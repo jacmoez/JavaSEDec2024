@@ -1,138 +1,125 @@
-class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello Java");
-    }
-}
-
 /***
- * Java Static 
- * 
- * 1, Variable 
- * 2, Method
- * 3, Block
- * 4, Nested Class
+ * this keywork 
+ * 1, current class instance varaible
+ * 2, current class method
+ * 3, current class constructor
+ * 4, argument method
+ * 5, argument constructor 
+ * 6. argument instance method
  */
 
  class Student {
     int id;
     String name;
+    float fee;
 
-    static String school = "Yangon";
-
-    Student(int i, String n){
-        id = i;
-        name = n;
+    Student(int id , String name, float fee){
+        this.id = id;
+        this.name = name;
+        this.fee = fee;
     }
 
     void studentInfo(){
-        System.out.println("Student ID: " + id + "\nStudent Name: " + name +"\nStudent School: " +  school + "\n===================================================");
+        System.out.println("Student ID: " + id + "\nStudent Name: " + name + "\nStudnet Fee: " + fee + "\n==================================");
     }
+
  }
 
  class TestStudent {
     public static void main(String[] args) {
-        Student s1 = new Student(101, "Maung Maung");
-        Student s2 = new Student(202, "Aung Aung");
-        Student.school = "Bago";
+        Student s1 = new Student(101, "Maung Maung", 45000);
+        Student s2 = new Student(202, "Aung Aung", 2000);
+
         s1.studentInfo();
         s2.studentInfo();
     }
  }
 
- class Counter{
-    static int count=0;
+ //current class method
 
-    Counter(){
-        count++;
-        System.out.println(count);
+ class A {
+    void m(){
+        System.out.println("Hello m");
     }
 
-    public static void main(String[] args) {
-        Counter c1 = new Counter();
-        Counter c2 = new Counter();
-        Counter c3 = new Counter();
+    void n(){
+        this.m();
+        System.out.println("Hello n");
     }
  }
 
- //Static Method
+ class TestA{
+    public static void main(String[] args) {
+        A a = new A();
+            a.n();
+    }
+ }
 
- class Student1 {
+ //current class constructor
+
+ class B {
+    int age;
+    B(){
+        System.out.println("Hello B");
+    }
+    // B(int x){
+    //     age = x;
+    //    this();
+    //     System.out.println(x);
+        
+    // }
+ }
+
+ class TestB {
+    public static void main(String[] args) {
+        B b = new B();
+       
+    }
+    }
+ 
+class Student1 {
     int id;
     String name;
-    static String school = "Yangon";
+    float fee;
 
     Student1(int i, String n){
         id = i;
         name = n;
     }
 
-
-    static void change(){
-        school = "Mon";
+    Student1(int id, String name, float fee){
+        this(id,name);
+        this.fee = fee;
     }
+
     void studentInfo(){
-        System.out.println("Student ID: " + id + "\nStudent Name: " + name +"\nStudent School: " +  school + "\n===================================================");
+        System.out.println("Student ID: " + id + "\nStudent Name: " + name + "\nStudnet Fee: " + fee + "\n==================================");
     }
- }
+}
 
- class TestStudnet1 {
+class TestStudent1 {
     public static void main(String[] args) {
-        Student1.change();
-        Student1 s1 = new Student1(101,"Maung Maung");
-        Student1 s2 = new Student1(202, "Aung Aung");
+        Student1 s1 = new Student1(101, "Maung Maung");
+        Student1 s2 = new Student1(202, "Aung Aung", 1200);
+
         s1.studentInfo();
         s2.studentInfo();
     }
- }
+}
 
- class Calculate {
-     int cube(int x){
-        return x * x * x;
+//4  this argument method 
+
+class A1{
+    void m(A1 x){
+        System.out.println("method is invoked");
+    }
+    void p(){
+        m(this);
     }
 
     public static void main(String[] args) {
-        int result = new Calculate().cube(4);
-        System.out.println(result);
+        A1 a1 = new A1();
+        a1.m(a1);
     }
- }
 
- //static block
-
- class A {
-    static {
-        System.out.println("static block is invoked");
-    }
-    public static void main(String[] args) {
-        System.out.println("Hello A Class!");
-    }
- }
-
- /**
-  * Java Nested Class 
-    1, Static Nested Class
-    2, Non-static Nested class (Inner class)
-    3, Local Inner Class
-    4, Anonymous Inner Class
-
-  */
-
-  //varabileScrop
-
-  class VarabileScrop1 {
-   static int x = 10;
-    private int y = 20;
-
-    public void method(int x){
-        VarabileScrop1 v = new VarabileScrop1();
-        this.x = 30;
-        y = 40;
-
-        System.out.println("Local value of x: " + v.x);
-        System.out.println("Global value of y: " + v.y);
-        System.out.println("Local value of y: " + y);
-    }
-    public static void main(String[] args) {
-        VarabileScrop1 v = new VarabileScrop1();
-        v.method(5);
-    }
-  }
+}
