@@ -1,0 +1,6 @@
+name,price,count,discount
+Computer,1000,100,0
+Mouse,100,998,0
+Keyboard,110,996,2
+Camera,500,270,3
+Tablet,650,200,0
